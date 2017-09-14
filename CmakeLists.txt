@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 2.8)
+#define o projeto
+project(MyTomoViewer)
+
+#pega os arquivos
+file(GLOB my_source_files "*.h" "*.cpp")
+#define o executável
+add_executable(viewer ${my_source_files})
+#Adiciona a boost
+SET (BOOST_INCLUDE_DIR "C:/libs/boost_1_64_0")
+include_directories(${BOOST_INCLUDE_DIR})
+target_link_libraries(viewer "C:/libs/boost_1_64_0/stage/lib/libboost_system-vc140-mt-gd-1_64.lib")
+target_link_libraries(viewer "C:/libs/boost_1_64_0/stage/lib/libboost_date_time-vc140-mt-gd-1_64.lib")
+target_link_libraries(viewer "C:/libs/boost_1_64_0/stage/lib/libboost_regex-vc140-mt-gd-1_64.lib")
+target_link_libraries(viewer "C:/libs/boost_1_64_0/stage/lib/libboost_regex-vc140-mt-gd-1_64.lib")
+target_link_libraries(viewer "C:/libs/boost_1_64_0/stage/lib/libboost_signals-vc140-mt-gd-1_64.lib")
+#Adiciona a vtk
+set(VTK_DIR "C:/libs/VTK-8.0.0_bin")#vtk
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+target_link_libraries(viewer ${VTK_LIBRARIES})
+#Adiciona a nanogui
+include_directories("C:/Program Files/NanoGUI/include")
+target_link_libraries(viewer "C:/Program Files/NanoGUI/lib/nanogui.lib")
+include_directories("C:/libs/nanogui/ext/eigen")
+include_directories("C:/libs/nanogui/ext/coro")
+include_directories("C:/libs/nanogui/ext/glad/include")
+include_directories("C:/libs/nanogui/ext/glfw/include")
+include_directories("C:/libs/nanogui/ext/nanovg/src")
+include_directories("C:/libs/glew-2.1.0/include")
+target_link_libraries(viewer "C:/libs/glew-2.1.0/lib/Release/x64/glew32.lib")
